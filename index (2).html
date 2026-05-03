@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Web GIS Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #f5f2eb;
+      --dark: #1a1a2e;
+      --accent: #2d6a4f;
+      --accent2: #74c69d;
+      --card: #ffffff;
+      --text: #2c2c2c;
+      --muted: #6b7280;
+      --border: #e0dbd0;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+    }
+
+    /* HERO */
+    .hero {
+      background-color: var(--dark);
+      color: #fff;
+      padding: 90px 40px 70px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 400px; height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(45,106,79,0.4) 0%, transparent 70%);
+    }
+
+    .hero-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-label {
+      font-size: 12px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 16px;
+      font-weight: 500;
+    }
+
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(36px, 6vw, 62px);
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent2);
+    }
+
+    .hero p {
+      font-size: 16px;
+      color: rgba(255,255,255,0.7);
+      max-width: 560px;
+      line-height: 1.7;
+    }
+
+    .hero-meta {
+      margin-top: 36px;
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .meta-item {
+      border-left: 2px solid var(--accent);
+      padding-left: 12px;
+    }
+
+    .meta-item .label {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent2);
+    }
+
+    .meta-item .value {
+      font-size: 14px;
+      color: rgba(255,255,255,0.85);
+      margin-top: 2px;
+    }
+
+    /* MAIN CONTENT */
+    .main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 60px 24px 80px;
+    }
+
+    .section-label {
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 32px;
+    }
+
+    /* MAP CARDS */
+    .map-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 32px;
+      transition: box-shadow 0.25s ease;
+    }
+
+    .map-card:hover {
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+    }
+
+    .card-header {
+      padding: 28px 32px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+    }
+
+    .card-number {
+      font-family: 'DM Serif Display', serif;
+      font-size: 42px;
+      color: var(--border);
+      line-height: 1;
+      flex-shrink: 0;
+      margin-top: -4px;
+    }
+
+    .card-meta {}
+
+    .card-tag {
+      display: inline-block;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(45,106,79,0.08);
+      border: 1px solid rgba(45,106,79,0.2);
+      border-radius: 20px;
+      padding: 3px 10px;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .card-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 22px;
+      color: var(--dark);
+      line-height: 1.3;
+    }
+
+    .card-body {
+      padding: 24px 32px;
+    }
+
+    /* Screenshot placeholder */
+    .screenshot-box {
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      border: 1px dashed #a5d6a7;
+      color: #555;
+      font-size: 13px;
+      gap: 8px;
+    }
+
+    .screenshot-box .icon {
+      font-size: 28px;
+      opacity: 0.5;
+    }
+
+    .screenshot-box p {
+      opacity: 0.6;
+      font-size: 12px;
+    }
+
+    .card-description {
+      font-size: 15px;
+      line-height: 1.75;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+
+    .features-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .feature-tag {
+      font-size: 11px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 4px 12px;
+      color: var(--muted);
+    }
+
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--dark);
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 22px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+
+    .card-link:hover {
+      background: var(--accent);
+    }
+
+    .card-link svg {
+      width: 14px; height: 14px;
+    }
+
+    /* COMING SOON card */
+    .coming-soon .card-header {
+      opacity: 0.5;
+    }
+    .coming-soon .card-body {
+      opacity: 0.5;
+    }
+    .coming-soon-badge {
+      display: inline-block;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #92400e;
+      background: #fef3c7;
+      border: 1px solid #fde68a;
+      border-radius: 20px;
+      padding: 3px 10px;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 32px;
+      font-size: 12px;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-inner">
+      <h1>Caitlin Smith<br/><em>Final Portfolio</em></h1>
+      <p>This is a collection of web-based GIS products demonstrating interactive mapping, spatial data visualization, and cartographic design that I built throughout the semester.</p>
+      <div class="hero-meta">
+        <div class="meta-item">
+          <div class="label">Course</div>
+          <div class="value">Web GIS</div>
+        </div>
+        <div class="meta-item">
+          <div class="label">Maps</div>
+          <div class="value">3</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAP CARDS -->
+  <main class="main">
+    <p class="section-label">Portfolio Products</p>
+
+    <!-- CARD 1 — Mapbox JS Map (you already have this!) -->
+    <article class="map-card">
+      <div class="card-header">
+        <div class="card-number">01</div>
+        <div class="card-meta">
+          <span class="card-tag">JavaScript · Mapbox</span>
+          <h2 class="card-title">Pennsylvania Underground Mines</h2>
+        </div>
+      </div>
+      <div class="card-body">
+        <img src="mapbox_screenshot.png" alt="Pennsylvania Underground Mines map" style="width:100%;border-radius:8px;margin-bottom:20px;border:1px solid var(--border);" />
+        <p class="card-description">
+          An interactive map of underground mine locations across Pennsylvania. Users can click on any mine marker to view the site name in a popup, and zoom in to explore individual locations. A legend is included to help users understand the symbology. The map automatically opens to the bounds of Pennsylvania.
+        </p>
+        <a class="card-link" href="Assignment_6_CS.html" target="_blank">
+          <!-- This links to your map file — make sure it's in the same GitHub folder -->
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          View Map
+        </a>
+      </div>
+    </article>
+
+    <!-- CARD 2 — ArcGIS Online Map -->
+    <article class="map-card">
+      <div class="card-header">
+        <div class="card-number">02</div>
+        <div class="card-meta">
+          <span class="card-tag">ArcGIS Online · Zone Lookup App</span>
+          <h2 class="card-title">Fire Stations in Massachusetts</h2>
+        </div>
+      </div>
+      <div class="card-body">
+        <img src="arcgis_screenshot.png" alt="Fire Stations in Massachusetts map" style="width:100%;border-radius:8px;margin-bottom:20px;border:1px solid var(--border);" />
+        <p class="card-description">
+          An interactive ArcGIS Online Zone Lookup app mapping all 771 fire department locations across Massachusetts, with county-level population data. Users can search by address or current location to find nearby fire stations, click within the map to explore a specific area, or click directly on a fire station symbol to view its address and details. The map was configured using MassGIS data and includes custom symbology, improved pop-up windows, and a description of the data's public safety significance. Population data by county is included to provide context for service coverage.
+        </p>
+        <a class="card-link" href="https://umass-amherst.maps.arcgis.com/apps/instant/lookup/index.html?appid=4e0a8023c21b4b6d8b12783c1e712ba2" target="_blank">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          View Map
+        </a>
+      </div>
+    </article>
+
+    <!-- CARD 3 — Survey123 -->
+    <article class="map-card">
+      <div class="card-header">
+        <div class="card-number">03</div>
+        <div class="card-meta">
+          <span class="card-tag">Survey123 · Web Surveying</span>
+          <h2 class="card-title">Fire Hazard Self-Reporting Survey</h2>
+        </div>
+      </div>
+      <div class="card-body">
+        <img src="survey_screenshot.png" alt="Fire Hazard Reporting Survey" style="width:100%;border-radius:8px;margin-bottom:20px;border:1px solid var(--border);" />
+        <p class="card-description">
+          A Survey123 form enabling residents of West Springfield, Massachusetts to self-report fire hazards in their homes and request assistance. Responses include a location-based question that generates spatial data, allowing fire departments or community organizations to prioritize outreach and home safety visits based on where hazards are concentrated. This Survey123 was created for the final portfolio as an improved survey to the initial one submitted. I took into consideration the comments on description and effective questions.
+        </p>
+        <a class="card-link" href="https://arcg.is/09GCWP" target="_blank">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          View Survey
+        </a>
+      </div>
+    </article>
+
+  </main>
+
+  <footer>
+  </footer>
+
+</body>
+</html>
