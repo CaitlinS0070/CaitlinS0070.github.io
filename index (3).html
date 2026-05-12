@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Caitlin Smith GIS &amp; Policy Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg:       #fdf8f8;
+      --dark:     #1e1624;
+      --ink:      #2c2230;
+      --muted:    #8b7d8f;
+      --accent:   #b5478a;
+      --accent-lt:#fce7f3;
+      --rule:     #ecdee8;
+      --card:     #ffffff;
+      --tag-bg:   #f5f0f5;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 300;
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(248,246,241,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--rule);
+      padding: 14px 40px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .nav-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px; font-weight: 600; letter-spacing: 0.02em;
+      color: var(--dark); text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a {
+      font-size: 13px; font-weight: 400; color: var(--muted);
+      text-decoration: none; letter-spacing: 0.04em; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg,#1a0a1e 0%,#3a0d45 50%,#5c1f50 100%);
+      color: #fff;
+      padding: 100px 40px 80px;
+      position: relative; overflow: hidden;
+    }
+    .hero-inner { max-width: 860px; margin: 0 auto; position: relative; z-index: 1; }
+    .hero-eyebrow {
+      font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+      color: #e8a0cc; font-weight: 500; margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(44px, 7vw, 76px); font-weight: 300;
+      line-height: 1.05; margin-bottom: 8px;
+    }
+    .hero h1 em { font-style: italic; color: #e8b4d8; }
+    .hero-title {
+      font-size: 15px; color: rgba(255,255,255,0.5); font-weight: 400;
+      letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 28px;
+    }
+    .hero-bio {
+      font-size: 16px; color: rgba(255,255,255,0.72);
+      max-width: 580px; line-height: 1.8; margin-bottom: 36px;
+    }
+    .hero-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 40px; }
+    .hero-tag {
+      font-size: 12px; font-weight: 400; color: rgba(255,255,255,0.9);
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.25); border-radius: 100px;
+      padding: 5px 14px; letter-spacing: 0.03em;
+    }
+    .hero-contact { display: flex; gap: 16px; flex-wrap: wrap; }
+    .contact-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      text-decoration: none; font-size: 13px; font-weight: 500;
+      padding: 10px 20px; border-radius: 6px;
+      transition: all 0.2s; letter-spacing: 0.02em;
+    }
+    .contact-btn.primary { background: var(--accent); color: #fff; }
+    .contact-btn.primary:hover { background: #922d70; }
+    .contact-btn.secondary {
+      background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.8);
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+    .contact-btn.secondary:hover { background: rgba(255,255,255,0.14); }
+
+    /* STATS BAR */
+    .stats-bar {
+      background: var(--card); border-bottom: 1px solid var(--rule);
+      padding: 24px 40px;
+    }
+    .stats-inner {
+      max-width: 860px; margin: 0 auto;
+      display: flex; gap: 48px; flex-wrap: wrap;
+    }
+    .stat { display: flex; flex-direction: column; }
+    .stat-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px; font-weight: 600; color: var(--dark); line-height: 1;
+    }
+    .stat-label {
+      font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted); margin-top: 4px;
+    }
+
+    /* SKILLS */
+    .skills-section { max-width: 860px; margin: 0 auto; padding: 60px 24px 0; }
+    .section-header {
+      display: flex; align-items: baseline; gap: 16px; margin-bottom: 28px;
+    }
+    .section-label {
+      font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--accent); font-weight: 500; white-space: nowrap;
+    }
+    .section-rule { flex: 1; height: 1px; background: var(--rule); }
+    .skills-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+    .skill-card {
+      background: var(--card); border: 1px solid var(--rule);
+      border-radius: 10px; padding: 20px;
+    }
+    .skill-card-label {
+      font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--accent); font-weight: 500; margin-bottom: 10px;
+    }
+    .skill-card p { font-size: 13.5px; color: var(--ink); line-height: 1.6; }
+
+    /* MAP CARDS */
+    .main { max-width: 860px; margin: 0 auto; padding: 60px 24px 80px; }
+    .map-card {
+      background: var(--card); border: 1px solid var(--rule);
+      border-radius: 14px; overflow: hidden; margin-bottom: 28px;
+      transition: box-shadow 0.25s ease, transform 0.25s ease;
+    }
+    .map-card:hover {
+      box-shadow: 0 12px 40px rgba(0,0,0,0.07);
+      transform: translateY(-2px);
+    }
+    .card-header {
+      padding: 24px 28px 18px; border-bottom: 1px solid var(--rule);
+      display: flex; align-items: flex-start; gap: 20px;
+    }
+    .card-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 38px; font-weight: 300; color: var(--rule);
+      line-height: 1; flex-shrink: 0; margin-top: 2px; min-width: 44px;
+    }
+    .card-meta { flex: 1; }
+    .card-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+    .card-tag {
+      font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+      font-weight: 500; color: var(--accent); background: var(--accent-lt);
+      border-radius: 100px; padding: 3px 10px;
+    }
+    .card-tag.neutral { color: #6b7280; background: var(--tag-bg); }
+    .card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px; font-weight: 400; color: var(--dark); line-height: 1.25;
+    }
+    .card-body { padding: 22px 28px; }
+    .card-img {
+      width: 100%; border-radius: 8px; margin-bottom: 18px;
+      border: 1px solid var(--rule); display: block;
+    }
+    .card-description {
+      font-size: 14.5px; line-height: 1.8; color: #3f3f46; margin-bottom: 18px;
+    }
+    .card-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--dark); color: #fff; text-decoration: none;
+      padding: 9px 20px; border-radius: 6px;
+      font-size: 12.5px; font-weight: 500; letter-spacing: 0.04em;
+      transition: background 0.2s;
+    }
+    .card-link:hover { background: var(--accent); }    .card-link svg { width: 13px; height: 13px; flex-shrink: 0; }
+
+    /* EXPERIENCE */
+    .exp-section { max-width: 860px; margin: 0 auto; padding: 0 24px 80px; }
+    .exp-item {
+      display: grid; grid-template-columns: 140px 1fr; gap: 24px;
+      padding: 28px 0; border-bottom: 1px solid var(--rule);
+    }
+    .exp-item:last-child { border-bottom: none; }
+    .exp-date { font-size: 12px; color: var(--muted); letter-spacing: 0.04em; padding-top: 3px; }
+    .exp-role {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 19px; font-weight: 400; color: var(--dark); margin-bottom: 2px;
+    }
+    .exp-org { font-size: 13px; color: var(--accent); font-weight: 500; margin-bottom: 10px; }
+    .exp-desc { font-size: 14px; color: #52525b; line-height: 1.75; }
+
+    /* FOOTER */
+    footer {
+      background: var(--dark); color: rgba(255,255,255,0.4);
+      text-align: center; padding: 32px 24px;
+      font-size: 12px; letter-spacing: 0.05em;
+    }
+    footer a { color: rgba(255,255,255,0.5); text-decoration: none; }
+    footer a:hover { color: #fff; }
+
+    @media (max-width: 620px) {
+      nav { padding: 14px 20px; }
+      .hero { padding: 70px 20px 60px; }
+      .stats-bar { padding: 20px; }
+      .exp-item { grid-template-columns: 1fr; gap: 4px; }
+      .card-header { flex-direction: column; gap: 10px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-name" href="#">Caitlin Smith</a>
+    <ul class="nav-links">
+      <li><a href="#maps">Maps</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="mailto:cait0070@gmail.com">Contact</a></li>
+    </ul>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-inner">
+      <p class="hero-eyebrow">GIS &amp; Policy Portfolio</p>
+      <h1>Caitlin <em>Smith</em></h1>
+      <p class="hero-title">MPPA, UMass Amherst &nbsp;·&nbsp; BA in English, Westfield State &nbsp;·&nbsp; Data Analytics Certificate</p>
+      <p class="hero-bio">
+        Policy and program professional combining spatial analysis, data-informed research, and hands-on advocacy experience. Focused on public safety, economic mobility, and health equity, with a commitment to translating complex data into decisions that serve communities.
+      </p>
+      <div class="hero-tags">
+        <span class="hero-tag">ArcGIS Pro &amp; Online</span>
+        <span class="hero-tag">Web GIS · Mapbox</span>
+        <span class="hero-tag">Survey123</span>
+        <span class="hero-tag">R · Statistical Modeling</span>
+        <span class="hero-tag">Policy Analysis</span>
+        <span class="hero-tag">Legislative Research</span>
+        <span class="hero-tag">Program Coordination</span>
+      </div>
+      <div class="hero-contact">
+        <a class="contact-btn primary" href="mailto:cait0070@gmail.com">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="14" height="14"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+          cait0070@gmail.com
+        </a>
+        <a class="contact-btn secondary" href="https://linkedin.com/in/caitlin-smith-a7aa84278" target="_blank">
+          <svg fill="currentColor" viewBox="0 0 24 24" width="14" height="14"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+          LinkedIn
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <div class="stats-bar">
+    <div class="stats-inner">
+      <div class="stat"><span class="stat-value">7</span><span class="stat-label">GIS Projects</span></div>
+      <div class="stat"><span class="stat-value">MPPA</span><span class="stat-label">Public Policy &amp; Administration</span></div>
+      <div class="stat"><span class="stat-value">BA English</span><span class="stat-label">Cum Laude, Political Science Minor</span></div>
+    </div>
+  </div>
+
+  <section class="skills-section">
+    <div class="section-header">
+      <span class="section-label">Core Competencies</span>
+      <div class="section-rule"></div>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-card-label">Spatial Analysis</div>
+        <p>ArcGIS Pro, ArcGIS Online, Web GIS, Mapbox JS, Survey123, choropleth &amp; thematic mapping</p>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-label">Data &amp; Statistics</div>
+        <p>R (regression, fixed effects, panel data), Excel (pivot tables, financial analysis), large dataset management</p>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-label">Policy &amp; Research</div>
+        <p>Legislative research, policy analysis, advocacy writing, grant reporting, qualitative research &amp; focus groups</p>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-label">Program Management</div>
+        <p>Stakeholder engagement, constituent services, program tracking systems, budget development &amp; reconciliation</p>
+      </div>
+    </div>
+  </section>
+
+  <main class="main" id="maps">
+    <div class="section-header">
+      <span class="section-label">Portfolio: GIS Products</span>
+      <div class="section-rule"></div>
+    </div>
+
+    <article class="map-card">
+      <div class="card-header">
+        <div class="card-number">01</div>
+        <div class="card-meta">
+          <div class="card-tags">
+            <span class="card-tag">JavaScript</span>
+            <span class="card-tag">Mapbox</span>
+            <span class="card-tag">Interactive</span>
+          </div>
+          <h2 class="card-title">Pennsylvania Underground Mines</h2>
+        </div>
+      </div>
+      <div class="card-body">
+        <img class="card-img" src="mapbox_screenshot.png" alt="Pennsylvania Underground Mines interactive map" />
+        <p class="card-description">An interactive web map of underground mine locations across Pennsylvania built with Mapbox GL JS. Users can click any mine marker to view its name in a popup and zoom to explore individual sites. The map auto-fits to Pennsylvania's bounds on load and includes a custom legend.</p>
+        <a class="card-link" href="Assignment_6_CS.html" target="_blank">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          View Map
+        </a>
+      </div>
+    </article>
+
+    <article class="map-card">
+      <div class="card-header">
+        <div class="card-number">02</div>
+        <div class="card-meta">
+          <div class="card-tags">
+            <span class="card-tag">ArcGIS Online</span>
+            <span class="card-tag">Zone Lookup</span>
+            <span class="card-tag">Public Safety</span>
+          </div>
+          <h2 class="card-title">Fire Stations in Massachusetts</h2>
+        </div>
+      </div>
+      <div class="card-body">
+        <img class="card-img" src="arcgis_screenshot.png" alt="Fire Stations in Massachusetts zone lookup map" />
+        <p class="card-description">An ArcGIS Online Zone Lookup app mapping all 771 fire department locations across Massachusetts with county-level population data. Users can search by address or current location, click within the map, or click a station symbol to view details. Configured using MassGIS data with custom symbology and enhanced pop-up windows.</p>
+        <a class="card-link" href="https://umass-amherst.maps.arcgis.com/apps/instant/lookup/index.html?appid=4e0a8023c21b4b6d8b12783c1e712ba2" target="_blank">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          View Map
+        </a>
+      </div>
+    </article>
+
+    <article class="map-card">
+      <div class="card-header">
+        <div class="card-number">03</div>
+        <div class="card-meta">
+          <div class="card-tags">
+            <span class="card-tag">Survey123</span>
+            <span class="card-tag">Community Engagement</span>
+            <span class="card-tag">Public Safety</span>
+          </div>
+          <h2 class="card-title">Fire Hazard Self-Reporting Survey</h2>
+        </div>
+      </div>
+      <div class="card-body">
+        <img class="card-img" src="survey_screenshot.png" alt="Fire Hazard Self-Reporting Survey" />
+        <p class="card-description">A Survey123 form enabling West Springfield, MA residents to self-report fire hazards and request assistance. Location-based responses generate spatial data allowing fire departments to prioritize outreach based on where hazards are concentrated, making it a practical tool for data-informed public safety planning.</p>
+        <a class="card-link" href="https://arcg.is/09GCWP" target="_blank">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          View Survey
+        </a>
+      </div>
+    </article>
+
+    <article class="map-card">
+      <div class="card-header">
+        <div class="card-number">04</div>
+        <div class="card-meta">
+          <div class="card-tags">
+            <span class="card-tag">ArcGIS Pro</span>
+            <span class="card-tag neutral">Choropleth</span>
+            <span class="card-tag">Economic Mobility</span>
+          </div>
+          <h2 class="card-title">Educational Attainment by State (2023)</h2>
+        </div>
+      </div>
+      <div class="card-body">
+        <img class="card-img" src="Educational_attainment.png" alt="Percent of state population aged 25 and older with a Bachelor's degree or higher, 2023" />
+        <p class="card-description">A choropleth map displaying the share of residents aged 25 and older holding a Bachelor's degree or higher across all U.S. states and territories. Classified into ten ranges from 23.3% to 63.6%, the map reveals strong regional clustering in degree attainment, with Washington D.C. shown as a separate inset at the highest range nationally.</p>
+      </div>
+    </article>
+
+    <article class="map-card">
+      <div class="card-header">
+        <div class="card-number">05</div>
+        <div class="card-meta">
+          <div class="card-tags">
+            <span class="card-tag">ArcGIS Pro</span>
+            <span class="card-tag neutral">Choropleth</span>
+            <span class="card-tag">Economic Mobility</span>
+          </div>
+          <h2 class="card-title">Federal Student Loan Debt by State (2024)</h2>
+        </div>
+      </div>
+      <div class="card-body">
+        <img class="card-img" src="Federal_student_loans.png" alt="2024 average federal student loan dollars outstanding per borrower by state" />
+        <p class="card-description">A choropleth map of the 2024 average federal student loan balance outstanding per borrower by state, ranging from roughly $30,000 to over $55,000. Washington D.C. borrowers carry the highest average burden of any state or territory. Supports analysis of how student debt geography intersects with educational attainment and economic opportunity.</p>
+      </div>
+    </article>
+
+    <article class="map-card">
+      <div class="card-header">
+        <div class="card-number">06</div>
+        <div class="card-meta">
+          <div class="card-tags">
+            <span class="card-tag">ArcGIS Pro</span>
+            <span class="card-tag neutral">Choropleth</span>
+            <span class="card-tag">Health &amp; Equity</span>
+          </div>
+          <h2 class="card-title">Poverty Among Degree Holders by State (2023)</h2>
+        </div>
+      </div>
+      <div class="card-body">
+        <img class="card-img" src="Pover_degree_.png" alt="2023 percent of adults with a Bachelor's degree or higher living below the poverty line by state" />
+        <p class="card-description">A choropleth map of the share of U.S. adults aged 25 and older with a Bachelor's degree who are living below the poverty line, by state. Rates range from under 3.1% to over 16%, with significant regional variation. The map surfaces geographic disparities in economic outcomes for degree holders, providing relevant context for workforce development and social services policy.</p>
+      </div>
+    </article>
+
+    <article class="map-card">
+      <div class="card-header">
+        <div class="card-number">07</div>
+        <div class="card-meta">
+          <div class="card-tags">
+            <span class="card-tag">R</span>
+            <span class="card-tag neutral">Choropleth</span>
+            <span class="card-tag">Graduate Capstone</span>
+            <span class="card-tag">Economic Mobility</span>
+          </div>
+          <h2 class="card-title">Average Milestone Achievement by State (2015-2024)</h2>
+        </div>
+      </div>
+      <div class="card-body">
+        <img class="card-img" src="1778539946033_image.png" alt="Average Milestone Achievement by State from 2015 to 2024" />
+        <p class="card-description">Created in R using IPUMS U.S. Census data as part of a graduate capstone analyzing adult milestone achievement, skilled trades, and the higher education system. The map displays state-level averages of a composite milestone index (0-4) for individuals aged 25 to 45, covering 2015 to 2024. Regional variation in milestone attainment informs the capstone's core policy argument for reforming Career and Technical Education pathways in U.S. high schools.</p>
+      </div>
+    </article>
+
+  </main>
+
+  <section class="exp-section" id="education">
+    <div class="section-header">
+      <span class="section-label">Education</span>
+      <div class="section-rule"></div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date">May 2026</div>
+      <div>
+        <div class="exp-role">Master of Public Policy and Administration (MPPA)</div>
+        <div class="exp-org">University of Massachusetts Amherst</div>
+        <p class="exp-desc">Advanced Certificate in Data Analytics and Computational Social Science. Relevant coursework: Economics &amp; Public Policy, Policy Analysis, Statistical Methods, Data Science Fundamentals, Research Design, Public Management, Introduction to GIS, Web GIS, Health Inequities.</p>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date">May 2024</div>
+      <div>
+        <div class="exp-role">Bachelor of Arts in English (Literature), Minor in Political Science</div>
+        <div class="exp-org">Westfield State University</div>
+        <p class="exp-desc">Graduated Cum Laude. Dean's List. Sigma Tau Delta (English honors society). Relevant coursework: Political Analysis, State &amp; Local Government, American National Government, Feminist Political Thought, Political Change in the U.S.</p>
+      </div>
+    </div>
+
+    <div class="section-header" style="margin-top: 48px;" id="experience">
+      <span class="section-label">Experience</span>
+      <div class="section-rule"></div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date">Jan 2025 – Present</div>
+      <div>
+        <div class="exp-role">Policy Advocate &amp; Program Assistant</div>
+        <div class="exp-org">Springfield WORKS, Springfield, MA</div>
+        <p class="exp-desc">Created ArcGIS maps to visualize program outreach and geographic trends used in advocacy and planning conversations. Analyzed financial data for two program cohorts to assess participant eligibility and deliver findings to coaching partners. Drafted a budget amendment request to the Massachusetts House Ways and Means Committee using program data to support funding recommendations. Facilitated a program focus group, produced a full transcript, and conducted qualitative analysis to inform policy strategy.</p>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date">Jan – May 2024</div>
+      <div>
+        <div class="exp-role">Legislative Intern</div>
+        <div class="exp-org">Office of Senator John Velis, Westfield, MA</div>
+        <p class="exp-desc">Conducted legislative research and tracked active bills to support policy analysis and office decision-making. Prepared weekly briefings summarizing hearings, stakeholder meetings, and legislative developments. Organized constituent concerns and drafted response letters on behalf of the office.</p>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date">2025 – 2026</div>
+      <div>
+        <div class="exp-role">Graduate Capstone Research</div>
+        <div class="exp-org">UMass Amherst, Amherst, MA</div>
+        <p class="exp-desc">Analyzed 7.9M+ observations from U.S. Census and labor market datasets to identify economic and geographic trends in skilled trades and higher education outcomes. Built regression models in R including two-way fixed effects models with state and year controls. Translated findings into policy reports recommending exploratory skilled trades courses in U.S. high school curricula as an alternative to existing CTE and apprenticeship frameworks.</p>
+      </div>
+    </div>
+
+  </section>
+
+  <footer>
+    <p>Caitlin Smith &nbsp;·&nbsp; <a href="mailto:cait0070@gmail.com">cait0070@gmail.com</a> &nbsp;·&nbsp; <a href="https://linkedin.com/in/caitlin-smith-a7aa84278" target="_blank">LinkedIn</a> &nbsp;·&nbsp; Open to relocation</p>
+  </footer>
+
+</body>
+</html>
